@@ -178,7 +178,7 @@ class Session(object):
     def client(self, service_name, region_name=None, api_version=None,
                use_ssl=True, verify=None, endpoint_url=None,
                aws_access_key_id=None, aws_secret_access_key=None,
-               aws_session_token=None, config=None):
+               aws_session_token=None, config=None, profile_name=None):
         """
         Create a low-level service client by name.
 
@@ -245,6 +245,10 @@ class Session(object):
             <https://botocore.readthedocs.io/en/latest/reference/config.html>`_
             for more details.
 
+        :type profile_name: string
+        :param profile_name: The name of a profile to use. If not given, then
+            the default profile is used.
+
         :return: Service client instance
 
         """
@@ -253,12 +257,13 @@ class Session(object):
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token, config=config)
+            aws_session_token=aws_session_token, config=config,
+            profile_name=profile_name)
 
     def resource(self, service_name, region_name=None, api_version=None,
                  use_ssl=True, verify=None, endpoint_url=None,
                  aws_access_key_id=None, aws_secret_access_key=None,
-                 aws_session_token=None, config=None):
+                 aws_session_token=None, config=None, profile_name=None):
         """
         Create a resource service client by name.
 
@@ -327,6 +332,10 @@ class Session(object):
             <https://botocore.readthedocs.io/en/latest/reference/config.html>`_
             for more details.
 
+        :type profile_name: string
+        :param profile_name: The name of a profile to use. If not given, then
+            the default profile is used.
+
         :return: Subclass of :py:class:`~boto3.resources.base.ServiceResource`
         """
         try:
@@ -379,7 +388,8 @@ class Session(object):
             use_ssl=use_ssl, verify=verify, endpoint_url=endpoint_url,
             aws_access_key_id=aws_access_key_id,
             aws_secret_access_key=aws_secret_access_key,
-            aws_session_token=aws_session_token, config=config)
+            aws_session_token=aws_session_token, config=config,
+            profile_name=profile_name)
         service_model = client.meta.service_model
 
         # Create a ServiceContext object to serve as a reference to
